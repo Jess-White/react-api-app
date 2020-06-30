@@ -1,7 +1,4 @@
 import React, {Component} from 'react';
-import Container from 'react-bootstrap/Container';
-import axios from 'axios';
-
 
 class UserFetcher extends Component {
   state = {
