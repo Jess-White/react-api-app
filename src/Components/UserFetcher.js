@@ -25,13 +25,18 @@ class UserFetcher extends Component {
 
     return (
       <div className="container"> 
-        <h1>
-        hello world
-        {this.state.randomUser.email}
-        </h1>
-        <h2>
-        {this.state.randomUser.name.first} is my first name
-        </h2>
+        <h1>User Info:</h1>
+        <img src={this.state.randomUser.picture.large}/>
+        <ol>
+        <li>{this.state.randomUser.name.title}</li>
+        <li>{this.state.randomUser.name.first}</li>
+        <li>{this.state.randomUser.name.last}</li>
+        <li>{this.state.randomUser.email}</li>
+        <li>{this.state.randomUser.dob.date}</li>
+        <li>{this.state.randomUser.dob.age}</li>
+        <li>{this.state.randomUser.location.street.number}</li>
+        <li>{this.state.randomUser.location.street.name}</li>
+        </ol>
       </div>
       )
   };

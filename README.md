@@ -1,3 +1,31 @@
+I built this React application to practice retrieving data from third-party APIs using fetch and axios web requests, and then to render the data. 
+
+I'm using this database:
+
+https://github.com/public-apis/public-apis#animals
+
+So if this looks like someone set up a React app that assembles a bunch of random data components retrieved from various APIs, that's...exactly what this is, for now. 
+
+Did you know that there's a Random Fox API? I'm trying to figure out a way to use it in an actual application. You try: 
+
+https://randomfox.ca/floof/
+
+The to-do list is something like:
+
+1) Establish working fetch request(s)
+2) Establish working axios request(s)
+3) Render data in components imported into the App file
+4) Separate into data vs. formatting components
+5) Play around with CSS styling options in React
+6) Play around with visual data presentation, e.g. graphs, pie charts
+7) Play around with API abstraction
+
+Eventually, I'd also like to:
+8) Fool around with React Router to create multiple page views for this FrankenAPI (we got yer foxes, we got yer bhagavad-vita couplets, we got yer up-to-the-minute COVID-19 data...). Also make some buttons and logic toggles so that users can show "most recent NASA photos" OR "five random NASA photos"
+9) API abstraction might belong here
+
+Installation info:
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -66,3 +94,6 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+***
+
