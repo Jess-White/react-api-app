@@ -1,54 +1,52 @@
 import React, {Component} from 'react';
 
+const urls = [
+                    "https://apodapi.herokuapp.com/api/",
+                    "https://apodapi.herokuapp.com/search/?search_query=planetary%20nebula",
+                    "https://apodapi.herokuapp.com/api/?count=10"
+                  ]
+
 class APODFetcher extends Component {
   constructor(props) {
         super(props);
-        this.state = { APOData: [], NebularData: [], TenData: []};
-    } 
+        this.state = 
+          { 
+            APOData: [], 
+            NebularData: [], 
+            TenData: [],
+            returnedData: []
+          }
+    }
 
-  urls: [
-                "https://apodapi.herokuapp.com/api/",
-                "https://apodapi.herokuapp.com//search/?search_query=planetary%20nebula",
-                "https://apodapi.herokuapp.com/api/?count=10",
-                ];
 
-  componentDidMount() {
+    // componentDidMount() {
+    //   fetch("https://apodapi.herokuapp.com/api/")
+    //     .then(response => response.json())
+    //     .then(response => {
+    //       console.log(response);
+    //         const APODResponse = response
+    //         this.setState({ APOData: APODResponse })
+    //     })
+    // }
+
+      componentDidMount() {
         Promise.all(urls.map(url =>
           fetch(url)
-            .then(checkStatus)
-            .then(parseJSON)
-            .catch(error => console.log('Threw an error, sorry!', error))
+            .then(response => response.json())
+            .then(response => this.state.returnedData.push(response))
           ))
-          .then(data => {
-            const apod_data = data[0];
-            const nebular_data = data[1];
-            const ten_data = data[2];
+          .then(console.log(this.state.returnedData, "waffle"))
+          .then(response => 
             this.setState({
-              APOData: apod_data,
-              NebularData: nebular_data,
-              TenData: ten_data
-            })
-          })
-        }
-
-  function checkStatus(response {
-        if (response.ok) {
-          return Promise.resolve(response);
-        } else {
-          return Promise.reject(new Error(response.statusText));
-        }
-      }
-
-      function parseJSON(response) {
-        return response.json();
-      }
-
-    const { APOData, NebularData, TenData } = this.state;
-      console.log(APOData, NebularData, TenData);
+              APOData: this.state.returnedData[0],
+              NebularData: this.state.returnedData[1],
+              TenData: this.state.returnedData[2]
+            }))
+            };
 
   render() {
 
-    if (!this.state.APOData) {
+    if (!this.state.returnedData) {
       return(
         <h1>Ground Control to Major Tom....</h1>
         )
@@ -57,8 +55,8 @@ class APODFetcher extends Component {
     return (
       <div className="container"> 
         <h1>{this.state.APOData.title}</h1>
-        <iframe style={{width: "700px", height: "500px"}}
-          src={this.state.APOData.url}></iframe>
+        <img style={{width: "700px", height: "500px"}}
+          src={this.state.APOData.url}></img>
         <ol>
         <li>{this.state.APOData.date}</li>
         <li>{this.state.APOData.description}</li>
